@@ -2,9 +2,8 @@ FROM python:3.10
 
 RUN apt-get update && apt-get install -y nginx apache2-utils
 
-# 安裝 langflow + 關鍵相依
-RUN pip install langflow==0.0.59 && \
-    pip install fastapi uvicorn aiofiles pydantic openai langchain
+# 使用實際存在的 langflow 版本
+RUN pip install "langflow==0.0.50" --prefer-binary --no-cache-dir
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY .htpasswd /etc/nginx/.htpasswd
